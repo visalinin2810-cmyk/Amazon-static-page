@@ -3,53 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <title>Earrings - Amazon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #131921;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: #febd69;
+            color: #131921;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #f3a847;
+        }
+
+        .beauty {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .product img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .product-info {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .product p:first-of-type {
+            color: #565959;
+            text-decoration: line-through;
+            font-size: 13px;
+        }
+
+        .product p:last-of-type {
+            color: #B12704;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .discount-badge {
+            background-color: #CC0C39;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .add-to-cart {
+            background-color: #ffa41c;
+            border: 1px solid #ff8f00;
+            color: #0f1111;
+            padding: 8px 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .add-to-cart:hover {
+            background-color: #ff8f00;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #232f3e;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .back-to-top {
+            background-color: #37475a;
+            text-align: center;
+            padding: 15px;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .back-to-top:hover {
+            background-color: #485769;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-column h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .footer-column ul li:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            background-color: #131921;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #ddd;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .beauty {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .product img {
+                height: 200px;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+                padding: 30px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Earings</h1>
-     <a href="../index.html">Back to home</a>
-   <div class="beauty">
-    <div class="product">
-       <img src="../assets/arteum-ro-VJZdxfvFGuo-unsplash.jpg" height="250px" alt="">
-       <p>price Rs:1000</p>
-       <p>offer price Rs:250</p>
+    <div class="main-content">
+        <div class="header">
+            <h1>Earrings</h1>
+            <a href="../index.html" class="back-link">← Back to Home</a>
+        </div>
+
+        <div class="beauty">
+            <div class="product">
+                <div class="product-image">
+                    <img src="../assets/arteum-ro-VJZdxfvFGuo-unsplash.jpg" alt="Earring 1">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p>Price: Rs 1000</p>
+                        <p>Offer Price: Rs 250</p>
+                        <span class="discount-badge">75% OFF</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="../assets/fujiphilm-Bwr5LZPqewE-unsplash.jpg" alt="Earring 2">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p>Price: Rs 500</p>
+                        <p>Offer Price: Rs 400</p>
+                        <span class="discount-badge">20% OFF</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="../assets/juhi-khaitan-npPZxI5Gkxs-unsplash.jpg" alt="Earring 3">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p>Price: Rs 250</p>
+                        <p>Offer Price: Rs 235</p>
+                        <span class="discount-badge">6% OFF</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="../assets/johny-silver-LBvg2FW_VII-unsplash.jpg" alt="Earring 4">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p>Price: Rs 100</p>
+                        <p>Offer Price: Rs 78</p>
+                        <span class="discount-badge">22% OFF</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="../assets/natalia-makarenko-AYveRKlaGDM-unsplash.jpg" alt="Earring 5">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p>Price: Rs 700</p>
+                        <p>Offer Price: Rs 650</p>
+                        <span class="discount-badge">7% OFF</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="../assets/parisa-safaei-RIqNLZ_h2X8-unsplash.jpg" alt="Earring 6">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p>Price: Rs 2000</p>
+                        <p>Offer Price: Rs 1800</p>
+                        <span class="discount-badge">10% OFF</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="../assets/sandip-kalal-Pv0nZRjQKmY-unsplash.jpg" alt="Earring 7">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p>Price: Rs 400</p>
+                        <p>Offer Price: Rs 380</p>
+                        <span class="discount-badge">5% OFF</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="../assets/zephir-brush-h2NV0zwpO9g-unsplash.jpg" alt="Earring 8">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p>Price: Rs 900</p>
+                        <p>Offer Price: Rs 830</p>
+                        <span class="discount-badge">8% OFF</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="product">
-       <img src="../assets/fujiphilm-Bwr5LZPqewE-unsplash.jpg" height=250px alt="">
-       <p>price Rs:500</p>
-       <p>offer price Rs:400</p>
-    </div>
-    <div class="product">
-       <img src="../assets/juhi-khaitan-npPZxI5Gkxs-unsplash.jpg" height=250pxalt="">
-       <p>price Rs:250</p>
-       <p> offer price Rs:235</p>
-    </div>
-    <div class="product">
-       <img src="../assets/johny-silver-LBvg2FW_VII-unsplash.jpg" height="250px" alt="">
-       <p>price Rs:100</p>
-       <p>offer price Rs:78</p>
-    </div>
-    <div class="product">
-       <img src="../assets/natalia-makarenko-AYveRKlaGDM-unsplash.jpg" height="250px" alt="">
-       <p>price Rs:700</p>
-       <p>offer price Rs:650</p>
-    </div> 
-    <div class="product">
-       <img src="../assets/parisa-safaei-RIqNLZ_h2X8-unsplash.jpg" height="250px" alt="">
-       <p>price Rs:2000</p>
-       <p>offer price Rs: 1800</p>
-    </div>
-    <div class="product">
-        <img src="../assets/sandip-kalal-Pv0nZRjQKmY-unsplash.jpg" height="250px">
-        <p>price Rs:400</p>
-        <p>offer price Rs:380</p>
-    </div>
-    <div class="product">
-        <img src="../assets/zephir-brush-h2NV0zwpO9g-unsplash.jpg" height="250px" alt="">
-        <p>price Rs:900</p>
-        <p>offer price Rs:830</p>
-    </div>
-</div>
+
+    <footer>
+        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            Back to top
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Get to Know Us</h3>
+                <ul>
+                    <li>About Amazon</li>
+                    <li>Careers</li>
+                    <li>Press Releases</li>
+                    <li>Amazon Science</li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Make Money with Us</h3>
+                <ul>
+                    <li>Sell on Amazon</li>
+                    <li>Sell apps on Amazon</li>
+                    <li>Supply to Amazon</li>
+                    <li>Become an Affiliate</li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Amazon Payment Products</h3>
+                <ul>
+                    <li>Amazon Rewards Visa</li>
+                    <li>Amazon Store Card</li>
+                    <li>Amazon Secured Card</li>
+                    <li>Shop with Points</li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Let Us Help You</h3>
+                <ul>
+                    <li>Your Account</li>
+                    <li>Your Orders</li>
+                    <li>Shipping Rates & Policies</li>
+                    <li>Returns & Replacements</li>
+                    <li>Help</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 Amazon.com, Inc. or its affiliates. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
